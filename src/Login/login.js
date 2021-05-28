@@ -1,22 +1,22 @@
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 import env from "react-dotenv";
 import React, {useContext} from 'react';
 import {Context} from '../store';
 import "./login.css";
 
-const refreshTokenSetup = (res) => {
-  let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
+// const refreshTokenSetup = (res) => {
+//   let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
 
-  const refreshToken = async () => {
-    const newAuthRes = await res.reloadAuthResponse();
-    refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
-    console.log("newAuthRes:", newAuthRes);
+//   const refreshToken = async () => {
+//     const newAuthRes = await res.reloadAuthResponse();
+//     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+//     console.log("newAuthRes:", newAuthRes);
 
-    console.log("new auth token", newAuthRes.id_token);
-  }
+//     console.log("new auth token", newAuthRes.id_token);
+//   }
 
-  setTimeout(refreshToken, refreshTiming);
-}
+//   setTimeout(refreshToken, refreshTiming);
+// }
 
 function Login() {
     const [state, dispatch] = useContext(Context);
@@ -25,7 +25,7 @@ function Login() {
   const handleLogin = async googleData => {
     dispatch({type: 'SET_LOGIN', payload: true});
 
-    const res = await fetch("https://fauna-notes-api.herokuapp.com/auth/google", {
+    var res = await fetch("https://fauna-notes-api.herokuapp.com/auth/google", {
       method: "POST",
       body: JSON.stringify({
         token: googleData.tokenId
@@ -35,9 +35,23 @@ function Login() {
       }
     })
 
-    const data = await res.json()
+    var data = await res.json()
     console.log(data);
-    console.log(data.data.name)
+    console.log(data.user.data.name.first);
+
+    dispatch({type: 'SET_KEY', payload: data.key});
+
+    res = await fetch("https://fauna-notes-api.herokuapp.com/note/user/" + data.key, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+
+    data = await res.json()
+
+    console.log(data);
+
   }
 
   return (

@@ -1,0 +1,27 @@
+.folder {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.folderInfo:hover {
+    color: var(--highlight-color);
+}
+
+.folder img {
+    height: 0.9rem;
+    padding-right: 0.2rem;
+    transform: rotate(0deg);
+}
+
+.closed img {
+    transform: rotate(-90deg);
+}
+
+.folderChildren {
+    margin-left: 1.5rem;
+    display: block;
+}
+
+.closed .folderChildren {
+    display: none;
+}

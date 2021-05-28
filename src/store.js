@@ -5,7 +5,40 @@ import Reducer from './reducer'
 
 const initialState = {
     selected: 0,
-    loggedIn: false
+    loggedIn: true,
+    selectedDay: 25,
+    apiKey: null,
+
+    folderTreeState: [
+        {
+        name: "root",
+        path: "root",
+        open: true,
+        type: "folder",
+        children: [
+            {
+                name: "child folder",
+                path: "root.child folder",
+                type: "folder",
+                open: true,
+                children: [
+                    {
+                        name: "child file",
+                        type: "file"
+                    }
+                ]
+            },
+
+            {
+                name: "child file",
+                type: "file"
+            }
+        ]
+        },
+
+        
+    ]
+    
 };
 
 const Store = ({children}) => {
