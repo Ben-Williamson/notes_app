@@ -5,7 +5,7 @@ import Reducer from './reducer'
 
 const initialState = {
     selected: 0,
-    loggedIn: true,
+    loggedIn: false,
     selectedDay: 25,
     apiKey: null,
 
