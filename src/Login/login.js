@@ -50,8 +50,7 @@ function Login() {
 
     data = await res.json()
 
-    console.log(data);
-
+    console.log("notes", data);
   }
 
   return (

@@ -11,27 +11,29 @@ const initialState = {
 
     folderTreeState: [
         {
-        name: "root",
-        path: "root",
+        name: "School",
+        id: "asdasdvsfsd",
         open: true,
         type: "folder",
         children: [
             {
-                name: "child folder",
-                path: "root.child folder",
+                name: "Physics",
+                id: "skjdflsajdnv",
                 type: "folder",
                 open: true,
                 children: [
                     {
-                        name: "child file",
-                        type: "file"
+                        name: "Revision",
+                        type: "file",
+                        id: "sfsdfsdf"
                     }
                 ]
             },
 
             {
-                name: "child file",
-                type: "file"
+                name: "Exam Timetable",
+                type: "file",
+                id: "dfgdfg"
             }
         ]
         },
